@@ -1,0 +1,8 @@
+bibentry(
+  bibtype  = "Manual",
+  title    = "nyczips: New York City ZIP Code Data",
+  author   = "Kieran Healy",
+  year     = "2025",
+  note     = "R package version 0.1.0",
+  url      = "https://github.com/kjhealy/nyczips"
+)
