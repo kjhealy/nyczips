@@ -1,4 +1,4 @@
-# nyczips
+# nyczips ![](reference/figures/nyczips.png)
 
 Provides a tibble of New YorK City zip codes and a simple features
 collection of their ZCTA polygons.
