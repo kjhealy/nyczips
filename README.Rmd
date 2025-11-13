@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/kjhealy/nyczips/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/kjhealy/nyczips/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-Provides a tibble of New YorK City zip codes and a simple features collection of their ZCTA polygons.
+Provides a tibble of New York City zip codes and a simple features collection of their ZCTA polygons.
 
 ## Installation
 
