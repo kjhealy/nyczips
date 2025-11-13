@@ -2,8 +2,8 @@
 #'
 #' Polygons of NYC zip codes along with 2019 ACS population estimate.
 #'
-#' @format ## `zip_sf`
-#' A simple feature collection with 209 rows and 4 columns:
+#' @format ## `nyc_zip_sf`
+#' A simple feature collection with 212 rows and 4 columns:
 #' \describe{
 #'   \item{zip}{Zip code (actually ZTCA)}
 #'   \item{name}{ZCTA5 name}
@@ -16,14 +16,14 @@
 #'
 #' @author Kieran Healy
 #' @source See details.
-"zip_sf"
+"nyc_zip_sf"
 
 #' NYC Zip Codes
 #'
 #' Table of New York City zip codes.
 #'
 #' @format ## `nyc_zips`
-#' A data frame with 211 rows and 6 columns:
+#' A data frame with 255 rows and 7 columns:
 #' \describe{
 #'   \item{zip}{Zip Code}
 #'   \item{borough}{Borough name}
@@ -31,6 +31,7 @@
 #'   \item{county}{County as 'Countyname County'}
 #'   \item{long_county}{County as 'Countyname County, New York'}
 #'   \item{short_county}{County as 'County'}
+#'   \item{po_name}{Nominal post office (USPS designation)}
 #' }
 #' @details
 #' Full USPS Zip Code list from <https://postalpro.usps.com/ZIP_Locale_Detail>

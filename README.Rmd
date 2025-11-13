@@ -39,11 +39,44 @@ library(nyczips)
 nyc_zips
 
 
-zip_sf
+nyc_zip_sf
 ```
 
 
-```{r pressure}
-ggplot(zip_sf) + geom_sf() + theme_void()
+Notice that we have more zip codes in `nyc_zips` than zctas in `nyc_zip_sf`. Several of these zip codes are for PO Boxes or otherwise non-residential (like LGA and Fort Totten Park).
+
+```{r}
+nyc_zip_sf |> 
+  filter(pop == 0)
+```
+
+
+With all the zips:
+
+```{r}
+ggplot(nyc_zip_sf) + geom_sf() + theme_void()
+```
+
+
+Without the zero-pops:
+
+```{r}
+nyc_zip_sf |> 
+  filter(pop != 0) |> 
+  ggplot() + 
+  geom_sf() + 
+  theme_void()
+```
+
+
+Zero-pops highlighted:
+
+```{r}
+nyc_zip_sf |> 
+  mutate(empty = ifelse(pop == 0, TRUE, FALSE)) |> 
+  ggplot() + 
+  geom_sf(aes(fill = empty)) + 
+  scale_fill_manual(values = c("white", "red")) +
+  theme_void()
 ```
 

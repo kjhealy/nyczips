@@ -37,27 +37,27 @@ library(sf)
 library(nyczips)
 
 nyc_zips
-#> # A tibble: 211 × 6
-#>      zip borough       city          county          long_county    short_county
-#>    <dbl> <chr>         <chr>         <chr>           <chr>          <chr>       
-#>  1 11368 Queens        Corona        Queens County   Queens County… Queens      
-#>  2 11208 Brooklyn      Brooklyn      Kings County    Kings County,… Kings       
-#>  3 11385 Queens        Ridgewood     Queens County   Queens County… Queens      
-#>  4 11373 Queens        Elmhurst      Queens County   Queens County… Queens      
-#>  5 11226 Brooklyn      Brooklyn      Kings County    Kings County,… Kings       
-#>  6 11236 Brooklyn      Brooklyn      Kings County    Kings County,… Kings       
-#>  7 10467 Bronx         Bronx         Bronx County    Bronx County,… Bronx       
-#>  8 10025 Manhattan     New York      New York County New York Coun… New York    
-#>  9 11207 Brooklyn      Brooklyn      Kings County    Kings County,… Kings       
-#> 10 10314 Staten Island Staten Island Richmond County Richmond Coun… Richmond    
-#> # ℹ 201 more rows
+#> # A tibble: 255 × 7
+#>    zip   borough   city     county          long_county     short_county po_name
+#>    <chr> <chr>     <chr>    <chr>           <chr>           <chr>        <chr>  
+#>  1 10001 Manhattan New York New York County New York Count… New York     New Yo…
+#>  2 10002 Manhattan New York New York County New York Count… New York     New Yo…
+#>  3 10003 Manhattan New York New York County New York Count… New York     New Yo…
+#>  4 10004 Manhattan New York New York County New York Count… New York     New Yo…
+#>  5 10005 Manhattan New York New York County New York Count… New York     New Yo…
+#>  6 10006 Manhattan New York New York County New York Count… New York     New Yo…
+#>  7 10007 Manhattan New York New York County New York Count… New York     New Yo…
+#>  8 10009 Manhattan New York New York County New York Count… New York     New Yo…
+#>  9 10010 Manhattan New York New York County New York Count… New York     New Yo…
+#> 10 10011 Manhattan New York New York County New York Count… New York     New Yo…
+#> # ℹ 245 more rows
 
 
-zip_sf
-#> Simple feature collection with 209 features and 3 fields
+nyc_zip_sf
+#> Simple feature collection with 212 features and 3 fields
 #> Geometry type: MULTIPOLYGON
 #> Dimension:     XY
-#> Bounding box:  xmin: -74.25609 ymin: 40.4961 xmax: -73.70084 ymax: 40.91528
+#> Bounding box:  xmin: -74.25609 ymin: 40.4961 xmax: -73.651 ymax: 40.91528
 #> Geodetic CRS:  NAD83
 #> First 10 features:
 #>      zip        name   pop                       geometry
@@ -73,8 +73,61 @@ zip_sf
 #> 10 11205 ZCTA5 11205 46843 MULTIPOLYGON (((-73.98022 4...
 ```
 
+Notice that we have more zip codes in `nyc_zips` than zctas in
+`nyc_zip_sf`. Several of these zip codes are for PO Boxes or otherwise
+non-residential (like LGA and Fort Totten Park).
+
 ``` r
-ggplot(zip_sf) + geom_sf() + theme_void()
+nyc_zip_sf |> 
+  filter(pop == 0)
+#> Simple feature collection with 28 features and 3 fields
+#> Geometry type: MULTIPOLYGON
+#> Dimension:     XY
+#> Bounding box:  xmin: -74.18246 ymin: 40.60293 xmax: -73.77029 ymax: 40.81133
+#> Geodetic CRS:  NAD83
+#> First 10 features:
+#>      zip        name pop                       geometry
+#> 1  11424 ZCTA5 11424   0 MULTIPOLYGON (((-73.83098 4...
+#> 2  10311 ZCTA5 10311   0 MULTIPOLYGON (((-74.18058 4...
+#> 3  10170 ZCTA5 10170   0 MULTIPOLYGON (((-73.97711 4...
+#> 4  11451 ZCTA5 11451   0 MULTIPOLYGON (((-73.79609 4...
+#> 5  11359 ZCTA5 11359   0 MULTIPOLYGON (((-73.78123 4...
+#> 6  10167 ZCTA5 10167   0 MULTIPOLYGON (((-73.97535 4...
+#> 7  10153 ZCTA5 10153   0 MULTIPOLYGON (((-73.97302 4...
+#> 8  10177 ZCTA5 10177   0 MULTIPOLYGON (((-73.97652 4...
+#> 9  10111 ZCTA5 10111   0 MULTIPOLYGON (((-73.97845 4...
+#> 10 10152 ZCTA5 10152   0 MULTIPOLYGON (((-73.97261 4...
 ```
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
+With all the zips:
+
+``` r
+ggplot(nyc_zip_sf) + geom_sf() + theme_void()
+```
+
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+
+Without the zero-pops:
+
+``` r
+nyc_zip_sf |> 
+  filter(pop != 0) |> 
+  ggplot() + 
+  geom_sf() + 
+  theme_void()
+```
+
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+
+Zero-pops highlighted:
+
+``` r
+nyc_zip_sf |> 
+  mutate(empty = ifelse(pop == 0, TRUE, FALSE)) |> 
+  ggplot() + 
+  geom_sf(aes(fill = empty)) + 
+  scale_fill_manual(values = c("white", "red")) +
+  theme_void()
+```
+
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />

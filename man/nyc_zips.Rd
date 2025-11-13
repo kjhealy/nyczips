@@ -7,7 +7,7 @@
 \format{
 \subsection{\code{nyc_zips}}{
 
-A data frame with 211 rows and 6 columns:
+A data frame with 255 rows and 7 columns:
 \describe{
 \item{zip}{Zip Code}
 \item{borough}{Borough name}
@@ -15,6 +15,7 @@ A data frame with 211 rows and 6 columns:
 \item{county}{County as 'Countyname County'}
 \item{long_county}{County as 'Countyname County, New York'}
 \item{short_county}{County as 'County'}
+\item{po_name}{Nominal post office (USPS designation)}
 }
 }
 }
