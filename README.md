@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# nyczips
+# nyczips <img src="man/figures/nyczips.png" align="right" width="360">
 
 <!-- badges: start -->
 
