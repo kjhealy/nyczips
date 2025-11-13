@@ -7,13 +7,13 @@
 
 ## Citation
 
-Healy K (2025). *nyczips: What the Package Does (One Line, Title Case)*.
-R package version 0.0.1.9000, <https://kjhealy.github.io/nyczips/>.
+Healy K (2025). *nyczips: New York City ZIP Code Data*. R package
+version 0.1.0, <https://github.com/kjhealy/nyczips>.
 
     @Manual{,
-      title = {nyczips: What the Package Does (One Line, Title Case)},
+      title = {nyczips: New York City ZIP Code Data},
       author = {Kieran Healy},
       year = {2025},
-      note = {R package version 0.0.1.9000},
-      url = {https://kjhealy.github.io/nyczips/},
+      note = {R package version 0.1.0},
+      url = {https://github.com/kjhealy/nyczips},
     }
