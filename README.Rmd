@@ -1,0 +1,49 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# nyczips
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+Provides a tibble of New YorK City zip codes and a simple features collection of their ZCTA polygons.
+
+## Installation
+
+You can install the development version of nyczips like so:
+
+``` r
+remotes::install_github("kjhealy/nyczips)
+```
+
+## Example
+
+
+```{r example}
+library(tidyverse)
+library(sf)
+library(nyczips)
+
+nyc_zips
+
+
+zip_sf
+```
+
+
+```{r pressure}
+ggplot(zip_sf) + geom_sf() + theme_void()
+```
+
