@@ -18,23 +18,23 @@ A data frame with 255 rows and 7 columns:
 
   Zip Code
 
-- borough:
+- boro_name:
 
   Borough name
 
-- city:
+- city_name:
 
   Nominal city (USPS designation)
 
-- county:
+- county_name:
 
   County as 'Countyname County'
 
-- long_county:
+- long_county_name:
 
   County as 'Countyname County, New York'
 
-- short_county:
+- short_county_name:
 
   County as 'County'
 

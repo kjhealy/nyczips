@@ -18,7 +18,7 @@ A simple feature collection with 212 rows and 4 columns:
 
   Zip code (actually ZTCA)
 
-- name:
+- zip_name:
 
   ZCTA5 name
 
