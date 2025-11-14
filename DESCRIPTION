@@ -1,5 +1,5 @@
 Package: nyczips
-Title: What the Package Does (One Line, Title Case)
+Title: New York City zip code map geometry from ZCTAs
 Version: 0.0.1.9000
 Authors@R: 
     person("Kieran", "Healy", , "kjhealy@gmail.com", role = c("aut", "cre"),
