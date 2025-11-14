@@ -10,11 +10,11 @@
 A data frame with 255 rows and 7 columns:
 \describe{
 \item{zip}{Zip Code}
-\item{borough}{Borough name}
-\item{city}{Nominal city (USPS designation)}
-\item{county}{County as 'Countyname County'}
-\item{long_county}{County as 'Countyname County, New York'}
-\item{short_county}{County as 'County'}
+\item{boro_name}{Borough name}
+\item{city_name}{Nominal city (USPS designation)}
+\item{county_name}{County as 'Countyname County'}
+\item{long_county_name}{County as 'Countyname County, New York'}
+\item{short_county_name}{County as 'County'}
 \item{po_name}{Nominal post office (USPS designation)}
 }
 }

@@ -6,7 +6,7 @@
 #' A simple feature collection with 212 rows and 4 columns:
 #' \describe{
 #'   \item{zip}{Zip code (actually ZTCA)}
-#'   \item{name}{ZCTA5 name}
+#'   \item{zip_name}{ZCTA5 name}
 #'   \item{pop}{2019 ACS population estimage}
 #'   \item{geometry}{Multipolydon for zip code area}
 #' }
@@ -26,11 +26,11 @@
 #' A data frame with 255 rows and 7 columns:
 #' \describe{
 #'   \item{zip}{Zip Code}
-#'   \item{borough}{Borough name}
-#'   \item{city}{Nominal city (USPS designation)}
-#'   \item{county}{County as 'Countyname County'}
-#'   \item{long_county}{County as 'Countyname County, New York'}
-#'   \item{short_county}{County as 'County'}
+#'   \item{boro_name}{Borough name}
+#'   \item{city_name}{Nominal city (USPS designation)}
+#'   \item{county_name}{County as 'Countyname County'}
+#'   \item{long_county_name}{County as 'Countyname County, New York'}
+#'   \item{short_county_name}{County as 'County'}
 #'   \item{po_name}{Nominal post office (USPS designation)}
 #' }
 #' @details

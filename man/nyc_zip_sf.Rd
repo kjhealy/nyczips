@@ -10,7 +10,7 @@
 A simple feature collection with 212 rows and 4 columns:
 \describe{
 \item{zip}{Zip code (actually ZTCA)}
-\item{name}{ZCTA5 name}
+\item{zip_name}{ZCTA5 name}
 \item{pop}{2019 ACS population estimage}
 \item{geometry}{Multipolydon for zip code area}
 }

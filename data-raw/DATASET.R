@@ -7,19 +7,19 @@ library(devtools)
 
 # Prep zip codes
 ny_county_boros <- tribble(
-  ~long_county                , ~county           , ~short_county , ~borough        ,
-  "New York County, New York" , "New York County" , "New York"    , "Manhattan"     ,
-  "Queens County, New York"   , "Queens County"   , "Queens"      , "Queens"        ,
-  "Kings County, New York"    , "Kings County"    , "Kings"       , "Brooklyn"      ,
-  "Bronx County, New York"    , "Bronx County"    , "Bronx"       , "Bronx"         ,
-  "Richmond County, New York" , "Richmond County" , "Richmond"    , "Staten Island"
+  ~long_county_name           , ~county_name      , ~short_county_name , ~boro_name      ,
+  "New York County, New York" , "New York County" , "New York"         , "Manhattan"     ,
+  "Queens County, New York"   , "Queens County"   , "Queens"           , "Queens"        ,
+  "Kings County, New York"    , "Kings County"    , "Kings"            , "Brooklyn"      ,
+  "Bronx County, New York"    , "Bronx County"    , "Bronx"            , "Bronx"         ,
+  "Richmond County, New York" , "Richmond County" , "Richmond"         , "Staten Island"
 )
 
 read_csv(here("data-raw", "nyc-ziptable.csv")) |>
   janitor::clean_names() |>
   select(-population_a) |>
-  filter(county %in% ny_county_boros$county) |>
-  rename(zip = zip_code) |>
+  filter(county %in% ny_county_boros$county_name) |>
+  rename(zip = zip_code, city_name = city, county_name = county) |>
   write_csv(here("data-raw", "nyc-ziptable-clean.csv"))
 
 nyc_ziptable <- read_csv(
@@ -27,18 +27,20 @@ nyc_ziptable <- read_csv(
   col_names = TRUE,
   cols(
     zip = col_character(),
-    city = col_character(),
-    county = col_character()
+    city_name = col_character(),
+    county_name = col_character()
   )
 )
+
 nyc_ziptable <- nyc_ziptable |>
   left_join(ny_county_boros) |>
-  relocate(borough, .after = zip) |>
+  relocate(boro_name, .after = zip) |>
   arrange(zip)
 
 readRDS(here("data-raw", "nyc_dogzips.rda")) |>
   mutate(zip = as.character(zip_code)) |>
-  select(zip, borough, po_name) |>
+  rename(boro_name = borough) |>
+  select(zip, boro_name, po_name) |>
   as_tibble() |>
   select(-geometry) |>
   distinct() |>
@@ -49,7 +51,7 @@ nyc_dogzips <- read_csv(
   col_names = TRUE,
   cols(
     zip = col_character(),
-    borough = col_character(),
+    boro_name = col_character(),
     po_name = col_character()
   )
 ) |>
@@ -57,7 +59,7 @@ nyc_dogzips <- read_csv(
 
 nyc_dogzips <- nyc_dogzips |>
   left_join(ny_county_boros) |>
-  relocate(borough, .after = zip) |>
+  relocate(boro_name, .after = zip) |>
   arrange(zip)
 
 # l nin r
@@ -99,7 +101,7 @@ nyc_zip_sf <- get_acs(
   geometry = TRUE
 ) |>
   select(-c(variable, moe)) |>
-  rename(zip = GEOID, pop = estimate, name = NAME) |>
+  rename(zip = GEOID, pop = estimate, zip_name = NAME) |>
   filter(zip %in% nyc_zips$zip)
 
 usethis::use_data(nyc_zip_sf, overwrite = TRUE, compress = "xz")
