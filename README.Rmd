@@ -17,7 +17,9 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/kjhealy/nyczips/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/kjhealy/nyczips/actions/workflows/R-CMD-check.yaml)
+[![R-universe version](https://kjhealy.r-universe.dev/nyczips/badges/version)](https://kjhealy.r-universe.dev/nyczips)
 <!-- badges: end -->
+
 
 Provides a tibble of New York City zip codes and a simple features collection of their ZCTA polygons.
 
@@ -28,6 +30,17 @@ You can install the development version of nyczips like so:
 ``` r
 remotes::install_github("kjhealy/nyczips)
 ```
+
+Alternatively, install this package from my [r-universe](https://kjhealy.r-universe.dev):
+
+```r
+install.packages(
+  "nyczips",
+  repos = c("https://kjhealy.r-universe.dev", "https://cloud.r-project.org")
+)
+```
+
+Including `https://cloud.r-project.org` ensures dependencies on CRAN are resolved automatically.
 
 ## Example
 
@@ -47,7 +60,7 @@ nyc_zip_sf
 Notice that we have more zip codes in `nyc_zips` than zctas in `nyc_zip_sf`. Several of these zip codes are for PO Boxes or otherwise non-residential (like LGA and Fort Totten Park).
 
 ```{r}
-nyc_zip_sf |> 
+nyc_zip_sf |>
   filter(pop == 0)
 ```
 
@@ -62,10 +75,10 @@ ggplot(nyc_zip_sf) + geom_sf() + theme_void()
 Without the zero-pops:
 
 ```{r}
-nyc_zip_sf |> 
-  filter(pop != 0) |> 
-  ggplot() + 
-  geom_sf() + 
+nyc_zip_sf |>
+  filter(pop != 0) |>
+  ggplot() +
+  geom_sf() +
   theme_void()
 ```
 
@@ -73,11 +86,10 @@ nyc_zip_sf |>
 Zero-pops highlighted:
 
 ```{r}
-nyc_zip_sf |> 
-  mutate(empty = ifelse(pop == 0, TRUE, FALSE)) |> 
-  ggplot() + 
-  geom_sf(aes(fill = empty)) + 
+nyc_zip_sf |>
+  mutate(empty = ifelse(pop == 0, TRUE, FALSE)) |>
+  ggplot() +
+  geom_sf(aes(fill = empty)) +
   scale_fill_manual(values = c("white", "red")) +
   theme_void()
 ```
-
