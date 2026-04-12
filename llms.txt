@@ -11,17 +11,30 @@ You can install the development version of nyczips like so:
 remotes::install_github("kjhealy/nyczips)
 ```
 
+Alternatively, install this package from my
+[r-universe](https://kjhealy.r-universe.dev):
+
+``` r
+install.packages(
+  "nyczips",
+  repos = c("https://kjhealy.r-universe.dev", "https://cloud.r-project.org")
+)
+```
+
+Including `https://cloud.r-project.org` ensures dependencies on CRAN are
+resolved automatically.
+
 ## Example
 
 ``` r
 library(tidyverse)
-#> ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-#> ✔ dplyr     1.1.4     ✔ readr     2.1.5
+#> ── Attaching core tidyverse packages ───────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
+#> ✔ dplyr     1.2.1     ✔ readr     2.2.0
 #> ✔ forcats   1.0.1     ✔ stringr   1.6.0
-#> ✔ ggplot2   4.0.0     ✔ tibble    3.3.0
-#> ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-#> ✔ purrr     1.2.0     
-#> ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+#> ✔ ggplot2   4.0.2     ✔ tibble    3.3.1
+#> ✔ lubridate 1.9.5     ✔ tidyr     1.3.2
+#> ✔ purrr     1.2.1     
+#> ── Conflicts ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 #> ✖ dplyr::filter() masks stats::filter()
 #> ✖ dplyr::lag()    masks stats::lag()
 #> ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
@@ -71,7 +84,7 @@ Notice that we have more zip codes in `nyc_zips` than zctas in
 non-residential (like LGA and Fort Totten Park).
 
 ``` r
-nyc_zip_sf |> 
+nyc_zip_sf |>
   filter(pop == 0)
 #> Simple feature collection with 28 features and 3 fields
 #> Geometry type: MULTIPOLYGON
@@ -103,10 +116,10 @@ ggplot(nyc_zip_sf) + geom_sf() + theme_void()
 Without the zero-pops:
 
 ``` r
-nyc_zip_sf |> 
-  filter(pop != 0) |> 
-  ggplot() + 
-  geom_sf() + 
+nyc_zip_sf |>
+  filter(pop != 0) |>
+  ggplot() +
+  geom_sf() +
   theme_void()
 ```
 
@@ -115,10 +128,10 @@ nyc_zip_sf |>
 Zero-pops highlighted:
 
 ``` r
-nyc_zip_sf |> 
-  mutate(empty = ifelse(pop == 0, TRUE, FALSE)) |> 
-  ggplot() + 
-  geom_sf(aes(fill = empty)) + 
+nyc_zip_sf |>
+  mutate(empty = ifelse(pop == 0, TRUE, FALSE)) |>
+  ggplot() +
+  geom_sf(aes(fill = empty)) +
   scale_fill_manual(values = c("white", "red")) +
   theme_void()
 ```
