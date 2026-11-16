@@ -1,18 +1,22 @@
 Package: nyczips
-Title: New York City zip code map geometry from ZCTAs
-Version: 0.0.1.9000
+Title: Superseded: New York City ZIP Code Geometry (Use 'nycmaps')
+Version: 0.0.1.9001
 Authors@R: 
     person("Kieran", "Healy", , "kjhealy@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "https://orcid.org/0000-0001-9114-981X"))
-Description: What the package does (one paragraph).
+Description: Superseded by the 'nycmaps' package. This package used to
+    provide New York City ZIP code tabulation area polygons and a table of
+    ZIP codes by borough; both are now in 'nycmaps', with the same
+    contents, and have been removed from here.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 Depends: 
     R (>= 3.5)
 Suggests:
     sf (>= 1.0.0),
+    testthat (>= 3.0.0),
     tibble (>= 3.0.0)
-LazyData: true
 URL: https://kjhealy.github.io/nyczips/
+Config/roxygen2/version: 8.1.1
+Config/testthat/edition: 3

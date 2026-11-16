@@ -11,16 +11,15 @@ template:
     code_font: {google: "IBM Plex Mono"}
 
 reference:
-  - title: "Data"
-    desc: Objects provided.
+  - title: "Package"
+    desc: Superseded by nycmaps.
     contents:
-      - nyc_zips
-      - nyc_zip_sf
+      - nyczips-package
 
 navbar:
   right:
    - icon: fa-github
-     href: https://github.com/kjhealy/nycomplaints
+     href: https://github.com/kjhealy/nyczips
 
 figures:
   dev: grDevices::png

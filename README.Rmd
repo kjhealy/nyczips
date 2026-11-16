@@ -21,75 +21,20 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 
-Provides a tibble of New York City zip codes and a simple features collection of their ZCTA polygons.
+**Superseded.** Use the [nycmaps](https://kjhealy.github.io/nycmaps/)
+package instead. The two objects this package used to provide are in
+nycmaps, with the same contents:
 
-## Installation
+- `nycmaps::nyc_zips`: New York City ZIP codes by borough, county, and post
+  office.
+- `nycmaps::nyc_zip_sf`: ZIP code tabulation area polygons with 2019 ACS
+  population, in EPSG:2263 (the copy formerly here was in EPSG:4269).
 
-You can install the development version of nyczips like so:
-
-``` r
-remotes::install_github("kjhealy/nyczips)
-```
-
-Alternatively, install this package from my [r-universe](https://kjhealy.r-universe.dev):
+They were removed from nyczips in version 0.0.1.9001 so that loading both
+packages no longer masks one copy with the other.
 
 ```r
-install.packages(
-  "nyczips",
-  repos = c("https://kjhealy.r-universe.dev", "https://cloud.r-project.org")
-)
-```
-
-Including `https://cloud.r-project.org` ensures dependencies on CRAN are resolved automatically.
-
-## Example
-
-
-```{r example}
-library(tidyverse)
-library(sf)
-library(nyczips)
-
-nyc_zips
-
+library(nycmaps)
 
 nyc_zip_sf
-```
-
-
-Notice that we have more zip codes in `nyc_zips` than zctas in `nyc_zip_sf`. Several of these zip codes are for PO Boxes or otherwise non-residential (like LGA and Fort Totten Park).
-
-```{r}
-nyc_zip_sf |>
-  filter(pop == 0)
-```
-
-
-With all the zips:
-
-```{r}
-ggplot(nyc_zip_sf) + geom_sf() + theme_void()
-```
-
-
-Without the zero-pops:
-
-```{r}
-nyc_zip_sf |>
-  filter(pop != 0) |>
-  ggplot() +
-  geom_sf() +
-  theme_void()
-```
-
-
-Zero-pops highlighted:
-
-```{r}
-nyc_zip_sf |>
-  mutate(empty = ifelse(pop == 0, TRUE, FALSE)) |>
-  ggplot() +
-  geom_sf(aes(fill = empty)) +
-  scale_fill_manual(values = c("white", "red")) +
-  theme_void()
 ```
