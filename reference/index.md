@@ -1,10 +1,9 @@
 # Package index
 
-## Data
+## Package
 
-Objects provided.
+Superseded by nycmaps.
 
-- [`nyc_zips`](https://kjhealy.github.io/nyczips/reference/nyc_zips.md)
-  : NYC Zip Codes
-- [`nyc_zip_sf`](https://kjhealy.github.io/nyczips/reference/nyc_zip_sf.md)
-  : Simple Features collection of NYC Zip Codes
+- [`nyczips`](https://kjhealy.github.io/nyczips/reference/nyczips-package.md)
+  [`nyczips-package`](https://kjhealy.github.io/nyczips/reference/nyczips-package.md)
+  : nyczips: superseded by nycmaps
